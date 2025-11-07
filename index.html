@@ -40,7 +40,9 @@
         <div class="relative z-10">
             <h1 class="text-3xl md:text-5xl font-bold leading-snug text-white">
                 <span class="block text-5xl md:text-8xl font-bold mt-4">1 of The Best</span>
-                <span class="block text-[#9B0000] md:text-5xl font-bold mt-4">Performance Marketing</span>
+                <span id="rotating-text" class="block text-[#9B0000] md:text-5xl font-bold mt-4 inline-block">
+                    Performance Marketing
+                </span>
                 <span class="block text-5xl md:text-8xl font-extrabold mt-4">AGENCY IN INDIA</span>
             </h1>
 
@@ -61,7 +63,38 @@
     </footer> -->
 
     <!--JS -->
-    <script src="js/main.js"></script>
+    <script>
+        const headings = [
+            "Performance Marketing",
+            "Brand Strategy",
+            "Creative Advertising",
+            "Social Media Growth",
+            "Lead Generation",
+            "Digital Transformation"
+        ];
+
+        const rotatingText = document.getElementById("rotating-text");
+        let index = 0;
+
+        function rotateHeading() {
+            // Animate out
+            rotatingText.classList.remove("rotate-in");
+            rotatingText.classList.add("rotate-out");
+
+            setTimeout(() => {
+                // Change text mid-rotation
+                index = (index + 1) % headings.length;
+                rotatingText.textContent = headings[index];
+
+                // Animate in
+                rotatingText.classList.remove("rotate-out");
+                rotatingText.classList.add("rotate-in");
+            }, 600); // Matches transition duration
+        }
+
+        setInterval(rotateHeading, 3000); // every 3s
+    </script>
+
 </body>
 
 </html>
